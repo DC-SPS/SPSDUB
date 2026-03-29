@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
->>>>>>> bfdd315595ccf47b92e3cbbd40f371ab61018877
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
@@ -15,24 +12,49 @@
             text-align: center;
             padding: 50px;
         }
+        nav {
+            margin: 2rem auto;
+            display: grid;
+            gap: 1rem;
+            max-width: 480px;
+        }
         a {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            padding: 0.85rem 1.2rem;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
         a:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+        .subtitle {
+            margin-top: 1rem;
+            color: #fff;
+            opacity: 0.9;
+        }
+        footer {
+            margin-top: 3rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
     <h1>Vitajte na našej stránke</h1>
-    <p>
-        Prejdite na naše projekty:
-        <br/>
-        <a href="PYTHON/index.html">Python Project</a> |
-        <a href="C/index.html">C Project</a>
-    </p>
+    <p class="subtitle">Prejdite na naše projekty a lekcie programovania v Pythone aj C.</p>
+    <nav>
+        <a href="PYTHON/index.html">Python</a>
+        <a href="PYTHON/PYGAME/index.html">Pygame</a>
+        <a href="C/index.html">C</a>
+        <a href="C/PONG/index.html">C PONG</a>
+    </nav>
     <footer>
         <p>&copy; Ing. Dušan Cabala, PhD.</p>
     </footer>
