@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C pre začiatočníkov</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>C pre začiatočníkov</h1>
+      <p>Stránka na učenie jazyka C s inštaláciou, základmi, knižnicami a 30 otázkovým testom.</p>
+      <nav>
+        <a href="#install">Inštalácia</a>
+        <a href="#basics">Základy</a>
+        <a href="#libraries">Knižnice</a>
+        <a href="#quiz">Test</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="install" class="section">
+      <h2>1. Inštalácia nástrojov</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Windows</h3>
+          <ol>
+            <li>Stiahni si <strong>MinGW</strong> alebo <strong>MSYS2</strong> pre kompilátor GCC.</li>
+            <li>Pridaj binárku do <code>PATH</code> a over <code>gcc --version</code>.</li>
+            <li>Použi VS Code s rozšírením <strong>C/C++</strong> od Microsoft.</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h3>Linux</h3>
+          <ol>
+            <li>Inštaluj GCC: <code>sudo apt install build-essential</code> alebo ekvivalent.</li>
+            <li>Otvor VS Code a nainštaluj rozšírenie <strong>C/C++</strong>.</li>
+            <li>Skontroluj kompilátor: <code>gcc --version</code>.</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h3>iPad</h3>
+          <ol>
+            <li>Použi webové prostredie s podporou C, napr. repl.it alebo GitHub Codespaces.</li>
+            <li>Pracuj s VS Code Web alebo alternatívou na písanie a kompiláciu v cloude.</li>
+            <li>Upravuj súbory a spúšťaj kompiláciu cez vzdialený terminál.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="basics" class="section">
+      <h2>2. Základy C</h2>
+      <article class="card">
+        <h3>Prvý program</h3>
+        <p>Základný program v C vypíše text pomocou <code>printf</code>.</p>
+        <pre><code>#include <stdio.h>
+
+int main(void) {
+    printf("Ahoj, C!\n");
+    return 0;
+}</code></pre>
+      </article>
+      <article class="card">
+        <h3>Premenné a typy</h3>
+        <p>C vyžaduje deklaráciu typu pre každú premennú.</p>
+        <pre><code>int cislo = 10;
+float desatinne = 3.14f;
+char znak = 'A';
+char text[] = "Ahoj";
+
+printf("%d %f %c %s\n", cislo, desatinne, znak, text);</code></pre>
+      </article>
+      <article class="card">
+        <h3>Podmienky a cykly</h3>
+        <p>Odsadenie je pre čitateľnosť, bloky delí stredník a zátvorky.</p>
+        <pre><code>if (cislo > 5) {
+    printf("Veľké číslo\n");
+} else {
+    printf("Malé číslo\n");
+}
+
+for (int i = 0; i < 3; i++) {
+    printf("%d\n", i);
+}
+
+while (cislo > 0) {
+    printf("%d\n", cislo);
+    cislo--;
+}</code></pre>
+      </article>
+      <article class="card">
+        <h3>Funkcie</h3>
+        <p>Funkcie v C definujeme s návratovým typom.</p>
+        <pre><code>int sucet(int a, int b) {
+    return a + b;
+}
+
+int main(void) {
+    printf("%d\n", sucet(3, 4));
+    return 0;
+}</code></pre>
+      </article>
+    </section>
+
+    <section id="libraries" class="section">
+      <h2>3. Základné knižnice</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>stdio.h</h3>
+          <p>Vstup/výstup: <code>printf</code>, <code>scanf</code>, <code>fopen</code>.</p>
+          <pre><code>#include <stdio.h>
+
+int main(void) {
+    printf("Ahoj\n");
+    return 0;
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3>stdlib.h</h3>
+          <p>Funkcie pre pamäť, konverziu a ukončenie programu.</p>
+          <pre><code>#include <stdlib.h>
+
+int main(void) {
+    int *p = malloc(sizeof(int) * 3);
+    if (!p) return 1;
+    free(p);
+    return 0;
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3>string.h</h3>
+          <p>Práca s reťazcami a pamäťou.</p>
+          <pre><code>#include <stdio.h>
+#include <string.h>
+
+char a[] = "Ahoj";
+char b[10];
+strcpy(b, a);
+printf("%s\n", b);</code></pre>
+        </article>
+        <article class="card">
+          <h3>math.h</h3>
+          <p>Matematické funkcie ako <code>sqrt</code> a <code>pow</code>.</p>
+          <pre><code>#include <stdio.h>
+#include <math.h>
+
+printf("%f\n", sqrt(16.0));
+printf("%f\n", pow(2.0, 3.0));</code></pre>
+        </article>
+        <article class="card">
+          <h3>time.h</h3>
+          <p>Práca s časom a trvaním.</p>
+          <pre><code>#include <stdio.h>
+#include <time.h>
+
+printf("Sekúnd od epochy: %ld\n", time(NULL));</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="quiz" class="section quiz-section">
+      <h2>4. Krátky test (30 otázok)</h2>
+      <p>Vyber správnu odpoveď a zisti svoje skóre.</p>
+      <form id="quizForm"></form>
+      <button id="submitQuiz" class="button">Vyhodnotiť test</button>
+      <div id="quizResult" class="result"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>C web učebnica – jednoduchý sprievodca pre začiatočníkov.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

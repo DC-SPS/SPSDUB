@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python pre začiatočníkov - Kompletný sprievodca</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>🐍 Python pre začiatočníkov</h1>
+      <p>Kompletný sprievodca programovaním v Pythone - od inštalácie po pokročilé techniky</p>
+      <p class="tagline">Naučte sa najjednostavší a najpopulárnejší programovací jazyk na svete</p>
+      <nav>
+        <a href="#install">📥 Inštalácia</a>
+        <a href="#basics">📚 Základy</a>
+        <a href="#modules">🔧 Moduly</a>
+        <a href="#quiz">✅ Test</a>
+        <a href="#resources">🔗 Zdroje</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Čo je Python? -->
+    <section id="about" class="section">
+      <h2>Čo je Python?</h2>
+      <article class="card card-info">
+        <p>Python je <strong>vysokoúrovňový, interpretovaný programovací jazyk</strong> vytvorený Guido van Rossumom v roku 1989. 
+        Je známy svojou jednoduchou a čitateľnou syntaxou, ktorá mu umožňuje byť ideálnym jazykom pre začiatočníkov aj skúsených vývojárov.</p>
+        
+        <h3>Kde sa Python používa?</h3>
+        <ul>
+          <li><strong>Webový vývoj</strong> - Django, Flask</li>
+          <li><strong>Analýza dát</strong> - Pandas, NumPy, Matplotlib</li>
+          <li><strong>Umelá inteligencia a strojové učenie</strong> - TensorFlow, PyTorch</li>
+          <li><strong>Automatizácia</strong> - skriptovanie a DevOps</li>
+          <li><strong>Vedecké výpočty</strong> - SciPy</li>
+          <li><strong>Vývoj hier</strong> - Pygame</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Inštalácia -->
+    <section id="install" class="section">
+      <h2>1️⃣ Inštalácia Pythonu a nástrojov</h2>
+      
+      <div class="card card-warning">
+        <h3>⚡ Rýchly návod na inštaláciu</h3>
+        <ol>
+          <li>Navštívte <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
+          <li>Stiahните najnovšiu verziu Pythonu (3.12 alebo novšia)</li>
+          <li>Počas inštalácie <strong>zaškrtnite "Add Python to PATH"</strong></li>
+          <li>Overte inštaláciu: <code>python --version</code></li>
+        </ol>
+      </div>
+
+      <h3>Vývojové prostredia (IDE)</h3>
+      <div class="card-grid">
+        <article class="card">
+          <h4>💻 VS Code</h4>
+          <p>Ľahký, rýchly editor s rozšírením pre Python</p>
+          <ol>
+            <li>Stiahni z <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></li>
+            <li>Nainštaluj rozšírenie <strong>Python</strong> od Microsoft</li>
+            <li>Nainštaluj rozšírenie <strong>Pylance</strong> pre IntelliSense</li>
+          </ol>
+        </article>
+        
+        <article class="card">
+          <h4>🚀 PyCharm Community</h4>
+          <p>Profesionálne IDE špecificky pre Python</p>
+          <ol>
+            <li>Stiahni z <a href="https://www.jetbrains.com/pycharm/" target="_blank">jetbrains.com/pycharm</a></li>
+            <li>Bezplatná Community edícia je dostatočná</li>
+            <li>Vynikajúci debugging a refactoring</li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h4>🌐 Replit (Online)</h4>
+          <p>Bezplatné online prostredie bez inštalácie</p>
+          <ol>
+            <li>Navštívi <a href="https://replit.com/" target="_blank">replit.com</a></li>
+            <li>Vytvor nový projekt s Python</li>
+            <li>Programuj priamo v prehliadači</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- Základy Pythonu -->
+    <section id="basics" class="section">
+      <h2>2️⃣ Základy Pythonu s detailnými vysvetleniami</h2>
+
+      <!-- Prvý program -->
+      <article class="card">
+        <h3>Prvý program: print()</h3>
+        <p><strong>Funkcia print()</strong> vypíše text alebo iné hodnoty na obrazovku (do konzoly).</p>
+        <pre><code>print("Ahoj, Python!")
+print("2 + 3 =", 2 + 3)
+print("Python je skvelý!")</code></pre>
+        <p><strong>Výstup:</strong></p>
+        <pre><code>Ahoj, Python!
+2 + 3 = 5
+Python je skvelý!</code></pre>
+        <p><strong>Vysvetlenie:</strong> Reťazec v úvodzovkách je text, ktorý sa vypíše. Čiarka oddeluje jednotlivé položky, ktoré sa vypíšu s medzerou medzi nimi.</p>
+      </article>
+
+      <!-- Premenné a dátové typy -->
+      <article class="card">
+        <h3>Premenné a dátové typy</h3>
+        <p><strong>Premenná</strong> je kontajner na uloženie dát. Na rozdiel od iných jazykov sa v Pythone typ automaticky určuje.</p>
+        <pre><code>meno = "Anna"           # str (reťazec)
+vek = 25               # int (celé číslo)
+vyska = 1.72           # float (desatinné číslo)
+je_programator = True  # bool (logická hodnota: True/False)
+
+print(meno, vek, vyska, je_programator)
+print(type(vek))       # <class 'int'></code></pre>
+        
+        <h4>Hlavné dátové typy:</h4>
+        <table class="data-types-table">
+          <tr>
+            <th>Typ</th>
+            <th>Príklad</th>
+            <th>Popis</th>
+          </tr>
+          <tr>
+            <td><code>int</code></td>
+            <td>42, -5, 0</td>
+            <td>Celé čísla bez desatinnej časti</td>
+          </tr>
+          <tr>
+            <td><code>float</code></td>
+            <td>3.14, -2.5, 0.0</td>
+            <td>Desatinné čísla</td>
+          </tr>
+          <tr>
+            <td><code>str</code></td>
+            <td>"Ahoj", 'text'</td>
+            <td>Textové reťazce v úvodzovkách</td>
+          </tr>
+          <tr>
+            <td><code>bool</code></td>
+            <td>True, False</td>
+            <td>Logické hodnoty (pravda/nepravda)</td>
+          </tr>
+          <tr>
+            <td><code>list</code></td>
+            <td>[1, 2, 3]</td>
+            <td>Zoznam hodnôt v hranatých zátvorkách</td>
+          </tr>
+          <tr>
+            <td><code>dict</code></td>
+            <td>{"meno": "Anna"}</td>
+            <td>Slovník s kľúčmi a hodnotami</td>
+          </tr>
+        </table>
+      </article>
+
+      <!-- Podmienky -->
+      <article class="card">
+        <h3>Podmienky (if, elif, else)</h3>
+        <p><strong>Podmienky</strong> umožňujú spustiť rôzny kód na základe splnenia podmienky.</p>
+        <pre><code>vek = 18
+
+if vek < 13:
+    print("Si dieťa")
+elif vek < 18:
+    print("Si tínedžer")
+else:
+    print("Si dospelý")</code></pre>
+
+        <h4>Operátory porovnávania:</h4>
+        <table class="operators-table">
+          <tr>
+            <th>Operátor</th>
+            <th>Popis</th>
+            <th>Príklad</th>
+          </tr>
+          <tr>
+            <td><code>==</code></td>
+            <td>Rovná sa</td>
+            <td>x == 5</td>
+          </tr>
+          <tr>
+            <td><code>!=</code></td>
+            <td>Nerovná sa</td>
+            <td>x != 5</td>
+          </tr>
+          <tr>
+            <td><code>&lt;</code></td>
+            <td>Menšie ako</td>
+            <td>x < 10</td>
+          </tr>
+          <tr>
+            <td><code>&gt;</code></td>
+            <td>Väčšie ako</td>
+            <td>x > 3</td>
+          </tr>
+          <tr>
+            <td><code>&lt;=</code></td>
+            <td>Menšie alebo rovné</td>
+            <td>x <= 10</td>
+          </tr>
+          <tr>
+            <td><code>&gt;=</code></td>
+            <td>Väčšie alebo rovné</td>
+            <td>x >= 0</td>
+          </tr>
+        </table>
+      </article>
+
+      <!-- Cykly -->
+      <article class="card">
+        <h3>Cykly (for a while)</h3>
+        <p><strong>Cykly</strong> opakujú blok kódu viacerí krát, kým je splnená podmienka alebo pokým sa neprejde cez všetky prvky.</p>
+
+        <h4>For cyklus - iterácia cez zoznam:</h4>
+        <pre><code># Cyklus cez čísla 0 až 4
+for i in range(5):
+    print(f"Číslo: {i}")
+
+# Cyklus cez zoznam
+ovocie = ["jablko", "banán", "hruška"]
+for ovocko in ovocie:
+    print(f"Milujem {ovocko}")</code></pre>
+
+        <h4>While cyklus - opakujúci sa kód:</h4>
+        <pre><code>pocet = 0
+while pocet < 5:
+    print(f"Počet: {pocet}")
+    pocet += 1  # Zvýš pocet o 1</code></pre>
+      </article>
+
+      <!-- Funkcie -->
+      <article class="card">
+        <h3>Funkcie</h3>
+        <p><strong>Funkcia</strong> je opakujúci sa blok kódu, ktorý môžeš použiť viackrát bez potreby opakovania kódu.</p>
+        <pre><code>def pozdrav(meno):
+    """Funkcia, ktorá pozdraví používateľa."""
+    return f"Ahoj, {meno}!"
+
+# Volanie funkcie
+vysledok = pozdrav("Mária")
+print(vysledok)  # Ahoj, Mária!
+
+# Funkcia s viacerými parametrami
+def zrataj(a, b):
+    return a + b
+
+print(zrataj(3, 5))  # 8</code></pre>
+
+        <h4>Dôležité koncepty funkcií:</h4>
+        <ul>
+          <li><strong>def</strong> - slovo na definovanie funkcie</li>
+          <li><strong>meno</strong> - názov funkcie (bez medzier, malé písmená)</li>
+          <li><strong>(parametre)</strong> - vstupné hodnoty</li>
+          <li><strong>return</strong> - návratová hodnota (čo funkcia vracia)</li>
+          <li><strong>"""docstring"""</strong> - dokumentácia funkcie</li>
+        </ul>
+      </article>
+
+      <!-- Zoznamy (Lists) -->
+      <article class="card">
+        <h3>Zoznamy (Lists)</h3>
+        <p><strong>Zoznam</strong> je zbierka prvkov v poradí, ktoré sa dá meniť.</p>
+        <pre><code>ovocie = ["jablko", "banán", "hruška", "pomaranč"]
+
+# Prístup k prvkom
+print(ovocie[0])      # jablko (prvý prvok)
+print(ovocie[-1])     # pomaranč (posledný prvok)
+print(len(ovocie))    # 4 (počet prvkov)
+
+# Pridanie prvku
+ovocie.append("kivi")
+
+# Odstránenie prvku
+ovocie.remove("banán")
+
+# Iterácia cez zoznam
+for ovocko in ovocie:
+    print(ovocko)</code></pre>
+      </article>
+
+      <!-- Slovníky (Dictionaries) -->
+      <article class="card">
+        <h3>Slovníky (Dictionaries)</h3>
+        <p><strong>Slovník</strong> ukladá dáta ako páry kľúč-hodnota (ako telefonný zoznam).</p>
+        <pre><code>osoba = {
+    "meno": "Ján",
+    "vek": 30,
+    "mesto": "Bratislava",
+    "zamestnanie": "programátor"
+}
+
+# Prístup k hodnotám
+print(osoba["meno"])      # Ján
+print(osoba.get("vek"))   # 30
+
+# Zmena hodnoty
+osoba["vek"] = 31
+
+# Pridanie nového kľúča
+osoba["telefon"] = "0905123456"
+
+# Iterácia cez slovník
+for kluc, hodnota in osoba.items():
+    print(f"{kluc}: {hodnota}")</code></pre>
+      </article>
+    </section>
+
+    <!-- Vstavané moduly -->
+    <section id="modules" class="section">
+      <h2>3️⃣ Vstavané moduly Pythonu</h2>
+      <p><strong>Modul</strong> je balík funkcií a tried, ktoré sa dajú naimportovať a použiť v tvojom programe.</p>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>📐 math - Matematika</h3>
+          <p>Matematické funkcie a konštanty.</p>
+          <pre><code>import math
+
+# Funkcie
+print(math.sqrt(16))    # 4.0
+print(math.pow(2, 3))   # 8.0
+print(math.ceil(3.2))   # 4 (zaokrúhlenie hore)
+print(math.floor(3.9))  # 3 (zaokrúhlenie dole)
+
+# Konštanty
+print(math.pi)          # 3.14159...
+print(math.e)           # 2.71828...</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/math.html" target="_blank">Dokumentácia math</a></p>
+        </article>
+
+        <article class="card">
+          <h3>📁 os - Operačný systém</h3>
+          <p>Práca so súborovým systémom a cestami.</p>
+          <pre><code>import os
+
+# Aktuálny adresár
+print(os.getcwd())
+
+# Zoznam súborov
+print(os.listdir('.'))
+
+# Vytvorenie priečinka
+os.mkdir('novy_priečinok')
+
+# Overenie či existuje
+if os.path.exists('súbor.txt'):
+    print("Súbor existuje")</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/os.html" target="_blank">Dokumentácia os</a></p>
+        </article>
+
+        <article class="card">
+          <h3>🎲 random - Náhodné hodnoty</h3>
+          <p>Generovanie náhodných čísel a výbery.</p>
+          <pre><code>import random
+
+# Náhodné číslo od 1 do 10
+cislo = random.randint(1, 10)
+
+# Náhodná voľba z zoznamu
+farba = random.choice(
+    ["červená", "modrá", "zelená"]
+)
+
+# Náhodné desatinné číslo 0-1
+hodnota = random.random()
+
+# Premiešanie zoznamu
+karty = [1, 2, 3, 4, 5]
+random.shuffle(karty)</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/random.html" target="_blank">Dokumentácia random</a></p>
+        </article>
+
+        <article class="card">
+          <h3>⏰ datetime - Dátum a čas</h3>
+          <p>Práca s dátumami a časmi.</p>
+          <pre><code>from datetime import datetime, timedelta
+
+# Aktuálny dátum a čas
+teraz = datetime.now()
+print(teraz)
+
+# Formátovanie
+text = teraz.strftime("%d.%m.%Y %H:%M:%S")
+print(text)
+
+# Rozdiel v čase
+zitra = teraz + timedelta(days=1)
+print(f"Zajtra: {zitra.date()}")</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/datetime.html" target="_blank">Dokumentácia datetime</a></p>
+        </article>
+
+        <article class="card">
+          <h3>🔧 sys - Systémové parametre</h3>
+          <p>Informácie o Python interprete a systéme.</p>
+          <pre><code>import sys
+
+# Verzia Pythonu
+print(sys.version)
+
+# Platforma
+print(sys.platform)
+
+# Argumenty príkazového riadku
+print(sys.argv)
+
+# Maximálne číslo
+print(sys.maxsize)</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/sys.html" target="_blank">Dokumentácia sys</a></p>
+        </article>
+
+        <article class="card">
+          <h3>📄 json - JSON formát</h3>
+          <p>Serializácia a deserializácia JSON dát.</p>
+          <pre><code>import json
+
+# Python slovník
+osoba = {"meno": "Ján", "vek": 30}
+
+# Konverzia na JSON string
+json_text = json.dumps(osoba)
+print(json_text)
+
+# JSON string na Python
+data = json.loads(json_text)
+print(data["meno"])</code></pre>
+          <p>📖 <a href="https://docs.python.org/3/library/json.html" target="_blank">Dokumentácia json</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Test -->
+    <section id="quiz" class="section quiz-section">
+      <h2>4️⃣ Preveri svoje vedomosti - Test</h2>
+      <p>Odpovedz na 30 otázok a otestuj si svoje znalosti Pythonu.</p>
+      <form id="quizForm"></form>
+      <button id="submitQuiz" class="button button-primary">Vyhodnotiť test</button>
+      <div id="quizResult" class="result"></div>
+    </section>
+
+    <!-- Zdroje a referencie -->
+    <section id="resources" class="section">
+      <h2>📚 Čítajte ďalej - Oficiálne zdroje</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>🌐 Python.org</h3>
+          <p>Oficiálne webové sídlo Pythonu s dokumentáciou, novinkami a sťahovaním.</p>
+          <a href="https://www.python.org/" target="_blank" class="button button-secondary">Navštíviť python.org</a>
+        </article>
+        
+        <article class="card">
+          <h3>📖 Oficiálna dokumentácia</h3>
+          <p>Kompletná referencia všetkých funkcií, modulov a Best Practices.</p>
+          <a href="https://docs.python.org/3/" target="_blank" class="button button-secondary">Čítať dokumentáciu</a>
+        </article>
+        
+        <article class="card">
+          <h3>🎓 Python Tutorial</h3>
+          <p>Oficiálny návod na Pythone od tvoriteľov.</p>
+          <a href="https://docs.python.org/3/tutorial/" target="_blank" class="button button-secondary">Začať tutorial</a>
+        </article>
+        
+        <article class="card">
+          <h3>📚 Real Python</h3>
+          <p>Vysokokvalitatné články a tutoriály na tému Python.</p>
+          <a href="https://realpython.com/" target="_blank" class="button button-secondary">Prejsť na Real Python</a>
+        </article>
+
+        <article class="card">
+          <h3>🐍 Python Package Index</h3>
+          <p>Adresár tisícov balíčkov na inštaláciu cez pip.</p>
+          <a href="https://pypi.org/" target="_blank" class="button button-secondary">PyPI.org</a>
+        </article>
+
+        <article class="card">
+          <h3>💡 Stack Overflow</h3>
+          <p>Komunita kde nájdeš odpovede na takmer všetky otázky.</p>
+          <a href="https://stackoverflow.com/questions/tagged/python" target="_blank" class="button button-secondary">Python na SO</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="section">
+      <h2>💡 Tipy na učenie sa Pythonu</h2>
+      <article class="card card-tips">
+        <ol>
+          <li><strong>Píš kód každý deň</strong> - i keď len 30 minút</li>
+          <li><strong>Robí projekty</strong> - malé aplikácie, hry, skriptami</li>
+          <li><strong>Čítaj dokumentáciu</strong> - oficálna Python dokumentácia je skvelá</li>
+          <li><strong>Ladenie kódu</strong> - nauč sa používať debugger a tlač príkazy</li>
+          <li><strong>Spolu s ľuďmi</strong> - participuj v komunite na GitHub, Reddit, atd.</li>
+          <li><strong>Experimentuj</strong> - neber to osobne, keď sa kód zrúti</li>
+          <li><strong>Čítaj cudzí kód</strong> - je to ako učenie sa iného jazyka</li>
+          <li><strong>Robí chyby</strong> - chyby sú súčasťou učenia sa programovania</li>
+        </ol>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>🐍 Python Web Učebnica - Kompletný sprievodca pre začiatočníkov | 
+      <a href="https://www.python.org/" target="_blank">python.org</a> | 
+      <a href="https://docs.python.org/3/" target="_blank">Dokumentácia</a>
+      </p>
+      <p>Vytvorené s ❤️ pre všetkých, ktorí chcú naučiť sa programovať</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
