@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pygame a PONG</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Pygame a hra PONG</h1>
+      <p>Učiť sa Pygame s jednoduchou hrou PONG: inštalácia, základné moduly, herný cyklus a logika.</p>
+      <nav>
+        <a href="../index.html">Späť na Python</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>1. Čo je Pygame?</h2>
+      <p>Pygame je knižnica pre Python, ktorá sprístupňuje grafiku, zvuk a vstup pre tvorbu 2D hier. Umožňuje pracovať s oknom, udalosťami a kreslením v reálnom čase.</p>
+    </section>
+
+    <section class="section">
+      <h2>2. Inštalácia a prvé okno</h2>
+      <p>Inštalácia Pygame:</p>
+      <pre><code>pip install pygame</code></pre>
+      <p>Základný kód pre otvorenie okna:</p>
+      <pre><code>import pygame
+
+pygame.init()  # Inicializuje všetky Pygame moduly
+screen = pygame.display.set_mode((800, 600))  # Nastaví okno na šírku 800 a výšku 600
+pygame.display.set_caption("PONG")  # Názov okna
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    screen.fill((0, 0, 0))  # Vymaže obrazovku čiernou farbou
+    pygame.display.flip()  # Aktualizuje obsah okna
+pygame.quit()  # Ukončí Pygame</code></pre>
+      <p>Vysvetlenie:</p>
+      <ul>
+        <li><code>pygame.init()</code> spúšťa interné moduly Pygame, ako zvuk a vstup.</li>
+        <li><code>pygame.display.set_mode((800, 600))</code> vytvorí zobrazovaciu plochu s rozmermi v pixeloch.</li>
+        <li><code>pygame.display.set_caption()</code> nastaví názov okna.</li>
+        <li><code>pygame.event.get()</code> vráti zoznam udalostí, napr. stlačenie tlačidla alebo zatvorenie okna.</li>
+        <li><code>screen.fill((0, 0, 0))</code> vyplní obrazovku RGB farbou: čierna = (0, 0, 0).</li>
+        <li><code>pygame.display.flip()</code> vykreslí zmeny do okna.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>3. Základné objekty v Pygame</h2>
+      <p>Najčastejšie použité prvky v hre:</p>
+      <ul>
+        <li><strong>Surface</strong> – obrázok alebo plocha, na ktorú kreslíme.</li>
+        <li><strong>Rect</strong> – obdĺžnik s polohou a veľkosťou (<code>x, y, width, height</code>).</li>
+        <li><strong>Clock</strong> – objekt pre nastavenie snímkovej frekvencie.</li>
+        <li><strong>Event</strong> – údaje o vstupoch, ukončení alebo stlačení kláves.</li>
+      </ul>
+      <p>Príklad vytvorenia tlačidla a renderovania textu:</p>
+      <pre><code>player = pygame.Rect(30, 250, 10, 100)
+clock = pygame.time.Clock()
+font = pygame.font.SysFont("Arial", 24)
+text_surface = font.render("Skóre: 0", True, (255, 255, 255))</code></pre>
+      <p>Vysvetlenie:</p>
+      <ul>
+        <li><code>pygame.Rect(30, 250, 10, 100)</code> vytvorí obdĺžnik so súradnicami x=30, y=250, šírka=10, výška=100.</li>
+        <li><code>pygame.time.Clock()</code> vytvorí meradlo času pre ovládanie FPS.</li>
+        <li><code>pygame.font.SysFont("Arial", 24)</code> vyberie font Arial vo veľkosti 24 pixelov.</li>
+        <li><code>font.render(text, True, color)</code> vytvorí obrázok textu, kde <code>True</code> znamená hladký anti-aliasing.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>4. Algoritmus hry PONG</h2>
+      <p>Hra PONG má tieto hlavné kroky:</p>
+      <ol>
+        <li>Inicializovať Pygame a vytvoriť okno.</li>
+        <li>Vytvoriť objekty hráča, protivníka a lopty.</li>
+        <li>Spracovať vstupy od hráča (pohyb rakety).</li>
+        <li>Aktualizovať pozíciu lopty a skontrolovať kolíziu so stenami a raketami.</li>
+        <li>Pridať body, keď lopta prejde za raketu.</li>
+        <li>Vykresliť všetky objekty na obrazovku.</li>
+        <li>Zopakovať cyklus, kým hráč neukončí hru.</li>
+      </ol>
+      <p>Pseudokód herného cyklu:</p>
+      <pre><code>while hra_bezi:
+    spracuj_udalosti()
+    pohyb_hraca()
+    pohyb_oponenta()
+    pohyb_lopty()
+    kontrola_kolizii()
+    vykresli_obrazovku()
+    cakanie_na_dalsiu_framu()</code></pre>
+    </section>
+
+    <section class="section">
+      <h2>5. Krok za krokom: implementácia PONG</h2>
+      <p>Tu je kompletný príklad s vysvetlením každej časti:</p>
+      <pre><code>import pygame
+import sys
+
+pygame.init()  # Inicializuje Pygame moduly
+
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("PONG")
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+player = pygame.Rect(30, 250, 10, 100)  # ľavá raketa
+opponent = pygame.Rect(760, 250, 10, 100)  # pravá raketa
+ball = pygame.Rect(WIDTH // 2 - 15, HEIGHT // 2 - 15, 30, 30)  # lopta
+
+player_speed = 0
+opponent_speed = 5
+ball_speed = [4, 4]  # rýchlosť lopty v osiach x a y
+
+clock = pygame.time.Clock()
+font = pygame.font.SysFont("Arial", 30)
+
+player_score = 0
+opponent_score = 0
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                player_speed = -6
+            if event.key == pygame.K_s:
+                player_speed = 6
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w or event.key == pygame.K_s:
+                player_speed = 0
+
+    player.y += player_speed  # pohyb hráčovej rakety
+    if player.top <= 0:
+        player.top = 0
+    if player.bottom >= HEIGHT:
+        player.bottom = HEIGHT
+
+    opponent.y += opponent_speed  # jednoduchá AI logika pre protivníka
+    if opponent.top <= 0 or opponent.bottom >= HEIGHT:
+        opponent_speed *= -1
+
+    ball.x += ball_speed[0]
+    ball.y += ball_speed[1]
+
+    if ball.top <= 0 or ball.bottom >= HEIGHT:
+        ball_speed[1] *= -1  # odraz od hornej alebo dolnej steny
+
+    if ball.colliderect(player) or ball.colliderect(opponent):
+        ball_speed[0] *= -1  # odraz od rakety
+
+    if ball.left <= 0:
+        opponent_score += 1
+        ball.center = (WIDTH // 2, HEIGHT // 2)
+        ball_speed[0] *= -1
+
+    if ball.right >= WIDTH:
+        player_score += 1
+        ball.center = (WIDTH // 2, HEIGHT // 2)
+        ball_speed[0] *= -1
+
+    screen.fill(BLACK)
+    pygame.draw.rect(screen, WHITE, player)
+    pygame.draw.rect(screen, WHITE, opponent)
+    pygame.draw.ellipse(screen, WHITE, ball)
+    pygame.draw.aaline(screen, WHITE, (WIDTH // 2, 0), (WIDTH // 2, HEIGHT))
+
+    player_text = font.render(f"Hráč: {player_score}", True, WHITE)
+    opponent_text = font.render(f"Rival: {opponent_score}", True, WHITE)
+    screen.blit(player_text, (20, 20))
+    screen.blit(opponent_text, (WIDTH - opponent_text.get_width() - 20, 20))
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()</code></pre>
+      <p>Vysvetlenie:</p>
+      <ul>
+        <li><code>pygame.Rect(x, y, width, height)</code> definuje obdĺžnikový objekt v priestore.</li>
+        <li><code>player.y += player_speed</code> posúva raketu podľa rýchlosti.</li>
+        <li><code>ball.colliderect(player)</code> kontroluje, či sa lopta dotýka rakety.</li>
+        <li><code>ball_speed[0] *= -1</code> zmení smer pohybu v osi x, čím lopta odrazí.</li>
+        <li><code>pygame.draw.rect(screen, WHITE, player)</code> nakreslí biely obdĺžnik na obrazovku.</li>
+        <li><code>pygame.draw.ellipse(screen, WHITE, ball)</code> nakreslí bielu loptičku.</li>
+        <li><code>pygame.display.flip()</code> zobrazí výsledok kreslenia na obrazovke.</li>
+        <li><code>clock.tick(60)</code> udržiava hru na približne 60 snímkach za sekundu.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>6. Parametre a význam</h2>
+      <p>Najdôležitejšie parametre v tomto kóde:</p>
+      <ul>
+        <li><code>(800, 600)</code> – rozmery okna v pixeloch.</li>
+        <li><code>(255, 255, 255)</code> – biela farba v RGB.</li>
+        <li><code>player_speed = -6</code> – záporná hodnota posúva nahor, kladná nadol.</li>
+        <li><code>ball_speed = [4, 4]</code> – rýchlosť lopty v x a y smere; prvý prvok je horizontálna rýchlosť, druhý je vertikálna.</li>
+        <li><code>WIDTH // 2</code> – celočíselné delenie pre stred obrazovky.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>7. Tipy a rozšírenia</h2>
+      <p>Čo môžeš pridávať ďalej:</p>
+      <ul>
+        <li>vylepšiť AI protivníka, aby sledoval loptu</li>
+        <li>pridať rýchlostné postupy pri dosiahnutí skóre</li>
+        <li>pridať zvuk pri odraze a bode</li>
+        <li>pridať štartovací a koncový displej</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Jednoduchý sprievodca Pygame pre hru PONG.</p>
+    </div>
+  </footer>
+</body>
+</html>
